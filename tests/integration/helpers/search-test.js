@@ -2,6 +2,7 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
+import { findAll, find, fillIn } from 'ember-native-dom-helpers';
 
 moduleForComponent('search', 'Integration | Helper | search', {
   integration: true
@@ -18,10 +19,12 @@ test('it returns the collection if the query is empty', function(assert) {
     </ul>
   `);
 
-  assert.equal(this.$('ul li').length, 3);
-  assert.equal(this.$('ul li:eq(0)').text().trim(), 'apples');
-  assert.equal(this.$('ul li:eq(1)').text().trim(), 'bananas');
-  assert.equal(this.$('ul li:eq(2)').text().trim(), 'oranges');
+  let results = findAll('ul li');
+
+  assert.equal(results.length, 3);
+  assert.equal(results[0].textContent.trim(), 'apples');
+  assert.equal(results[1].textContent.trim(), 'bananas');
+  assert.equal(results[2].textContent.trim(), 'oranges');
 });
 
 test('it can have zero results', function(assert) {
@@ -33,7 +36,7 @@ test('it can have zero results', function(assert) {
     {{/unless}}
   `);
 
-  assert.equal(this.$('p').text().trim(), 'No results.');
+  assert.equal(find('p').textContent.trim(), 'No results.');
 });
 
 test('it renders a searched state', function(assert) {
@@ -47,8 +50,8 @@ test('it renders a searched state', function(assert) {
     </ul>
   `);
 
-  assert.equal(this.$('ul li').length, 1);
-  assert.equal(this.$('ul li:eq(0)').text().trim(), 'apples');
+  assert.equal(findAll('ul li').length, 1);
+  assert.equal(find('ul li').textContent.trim(), 'apples');
 });
 
 test('the results can match partial queries', function(assert) {
@@ -62,23 +65,23 @@ test('the results can match partial queries', function(assert) {
     </ul>
   `);
 
-  assert.equal(this.$('ul li').length, 1);
-  assert.equal(this.$('ul li:eq(0)').text().trim(), 'oranges');
+  assert.equal(findAll('ul li').length, 1);
+  assert.equal(find('ul li').textContent.trim(), 'oranges');
 });
 
 test('the results can be forced to match the case of the query', function(assert) {
   this.set('collection', emberArray(['apples', 'bananas', 'oranges']));
 
   this.render(hbs`
-    {{#unless (search "GES" collection sensitive=true)}}
+    {{#unless (search "GES" collection caseSensitive=true)}}
       <p>No results.</p>
     {{/unless}}
   `);
 
-  assert.equal(this.$('p').text().trim(), 'No results.');
+  assert.equal(find('p').textContent.trim(), 'No results.');
 });
 
-test('the results change when the query changes', function(assert) {
+test('the results change when the query changes', async function(assert) {
   this.set('collection', emberArray(['apples', 'bananas', 'oranges']));
   this.set('query', 'apples');
 
@@ -92,17 +95,38 @@ test('the results change when the query changes', function(assert) {
     </ul>
   `);
 
-  assert.equal(this.$('ul li').length, 1);
-  assert.equal(this.$('ul li:eq(0)').text().trim(), 'apples');
+  assert.equal(findAll('ul li').length, 1);
+  assert.equal(find('ul li').textContent.trim(), 'apples');
 
-  this.$('input').val('bananas');
-  this.$('input').trigger('change');
+  await fillIn('input', 'bananas');
 
-  assert.equal(this.$('ul li').length, 1);
-  assert.equal(this.$('ul li:eq(0)').text().trim(), 'bananas');
+  assert.equal(findAll('ul li').length, 1);
+  assert.equal(find('ul li').textContent.trim(), 'bananas');
 });
 
-test('searchableProperties can be an array of synchronous props', function(assert) {
+test('the results can be forced to be an exact match of the query', function(assert) {
+  this.set('collection', emberArray(['apples', 'bananas', 'oranges']));
+  this.set('query', 'app');
+
+  this.render(hbs`
+    <ul>
+      {{#each (search query collection exactMatch=true) as |result|}}
+        <li>{{result}}</li>
+      {{/each}}
+    </ul>
+  `);
+
+  assert.equal(findAll('ul li').length, 0);
+
+  run(() => {
+    this.set('query', 'apples');
+  });
+
+  assert.equal(findAll('ul li').length, 1);
+  assert.equal(find('ul li').textContent.trim(), 'apples');
+});
+
+test('properties can be an array of synchronous props', async function(assert) {
   this.set('collection', emberArray([
     {
       name: "apples",
@@ -122,23 +146,22 @@ test('searchableProperties can be an array of synchronous props', function(asser
   this.set('query', 'apples');
 
   this.render(hbs`
-      {{input value=query on-key-press=(action (mut query))}}
+    {{input value=query on-key-press=(action (mut query))}}
 
-      <ul>
-        {{#each (search query collection properties=properties) as |result|}}
-          <li>{{result.name}} ({{result.opinion}})</li>
-        {{/each}}
-      </ul>
+    <ul>
+      {{#each (search query collection properties=properties) as |result|}}
+        <li>{{result.name}} ({{result.opinion}})</li>
+      {{/each}}
+    </ul>
   `);
 
-  assert.equal(this.$('ul li').length, 1);
-  assert.equal(this.$('ul li:eq(0)').text().trim(), 'apples (okay)');
+  assert.equal(findAll('ul li').length, 1);
+  assert.equal(find('ul li').textContent.trim(), 'apples (okay)');
 
-  this.$('input').val('awesome');
-  this.$('input').trigger('change');
+  await fillIn('input', 'awesome');
 
-  assert.equal(this.$('ul li').length, 1);
-  assert.equal(this.$('ul li').text().trim(), 'oranges (awesome)');
+  assert.equal(findAll('ul li').length, 1);
+  assert.equal(find('ul li').textContent.trim(), 'oranges (awesome)');
 });
 
 test('it updates the results if the collection is updated', function(assert) {
@@ -152,16 +175,16 @@ test('it updates the results if the collection is updated', function(assert) {
     </ul>
   `);
 
-  assert.equal(this.$('ul li').length, 3);
-  assert.equal(this.$('ul li:eq(0)').text().trim(), 'apples');
-  assert.equal(this.$('ul li:eq(1)').text().trim(), 'bananas');
-  assert.equal(this.$('ul li:eq(2)').text().trim(), 'oranges');
+  let results = findAll('ul li');
+
+  assert.equal(results.length, 3);
+  assert.equal(results[0].textContent.trim(), 'apples');
+  assert.equal(results[1].textContent.trim(), 'bananas');
+  assert.equal(results[2].textContent.trim(), 'oranges');
 
   run(() => {
     this.get('collection').pushObject('mangoes');
   });
 
-  assert.equal(this.$('ul li').length, 4);
+  assert.equal(findAll('ul li').length, 4);
 });
-
-

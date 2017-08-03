@@ -1,39 +1,54 @@
 import Helper from '@ember/component/helper';
 import { get } from '@ember/object';
 import { isEmpty } from '@ember/utils';
+import { A as emberArray } from '@ember/array';
 
-let searchHaystack = function(query, collection, properties, sensitive) {
-  let testValue = function(value, sensitive) {
-    value = String(value);
+let testValue = function(value, query, caseSensitive, exactMatch) {
+  value = String(value);
 
-    if (!sensitive) {
-      value = value.toLowerCase();
-    }
+  if (!caseSensitive) {
+    value = value.toLowerCase();
+  }
 
-    return (value.indexOf(query) !== -1);
-  };
+  return (exactMatch) ? (value === query) : (value.indexOf(query) !== -1);
+};
 
-  if (isEmpty(query)) {
+let searchHaystack = function(query, collection, { properties=[], caseSensitive=false, exactMatch=false }) {
+  if (isEmpty(query) || isEmpty(collection)) {
     return collection;
   }
 
-  if (!sensitive) {
+  if (!caseSensitive) {
     query = query.toLowerCase();
   }
 
-  return collection.filter((item) => {
-    if (!isEmpty(properties)) {
-      return properties.some((prop) => {
-        return testValue(get(item, prop), sensitive);
-      });
-    } else {
-      return testValue(item, sensitive);
-    }
-  });
-};
+  let collectionLength = get(collection, 'length');
+  let propertiesLength = get(properties, 'length');
+  let foundItems = emberArray();
 
-export function search([ query, collection ], { properties = [], sensitive = false }) {
-  return searchHaystack(query, collection, properties, sensitive);
+  for (let i = 0; i < collectionLength; i++) {
+    let item = collection.objectAt(i);
+
+    if (propertiesLength) {
+      for (let x = 0; x < propertiesLength; x++) {
+        let value = get(item, properties.objectAt(x));
+
+        if (testValue(value, query, caseSensitive, exactMatch)) {
+          foundItems.pushObject(item);
+          break;
+        }
+      }
+    } else {
+      if (testValue(item, query, caseSensitive, exactMatch)) {
+        foundItems.pushObject(item);
+      }
+    }
+  }
+
+  return foundItems;
+}
+export function search([ query, collection ], options) {
+  return searchHaystack(query, collection, options);
 }
 
 export default Helper.helper(search);
