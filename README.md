@@ -1,5 +1,7 @@
 # ember-search-helper
 
+[![Build Status](https://travis-ci.org/gmurphey/ember-search-helper.svg?branch=master)](https://travis-ci.org/gmurphey/ember-search-helper)
+
 This README outlines the details of collaborating on this Ember addon.
 
 ## Installation
