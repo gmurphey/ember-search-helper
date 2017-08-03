@@ -13,7 +13,7 @@ let testValue = function(value, query, caseSensitive, exactMatch) {
   return (exactMatch) ? (value === query) : (value.indexOf(query) !== -1);
 };
 
-let searchHaystack = function(query, collection, { properties=[], caseSensitive=false, exactMatch=false }) {
+export function search([ query, collection ], { properties=[], caseSensitive=false, exactMatch=false }) {
   if (isEmpty(query) || isEmpty(collection)) {
     return collection;
   }
@@ -46,9 +46,6 @@ let searchHaystack = function(query, collection, { properties=[], caseSensitive=
   }
 
   return foundItems;
-}
-export function search([ query, collection ], options) {
-  return searchHaystack(query, collection, options);
 }
 
 export default Helper.helper(search);
