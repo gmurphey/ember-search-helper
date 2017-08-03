@@ -3,12 +3,15 @@
   "version": "0.0.0",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "search",
+    "helper",
+    "filter",
+    "array"
   ],
   "license": "MIT",
-  "author": "",
+  "author": "Garrett Murphey <gmurphey@gmurphey.com>",
   "directories": {
-    "doc": "doc",
     "test": "tests"
   },
   "repository": "",
