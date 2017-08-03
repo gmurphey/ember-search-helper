@@ -1,5 +1,6 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { get, set } from '@ember/object';
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { findAll, find, fillIn } from 'ember-native-dom-helpers';
@@ -9,7 +10,7 @@ moduleForComponent('search', 'Integration | Helper | search', {
 });
 
 test('it returns the collection if the query is empty', function(assert) {
-  this.set('collection', emberArray(['apples', 'bananas', 'oranges']));
+  set(this, 'collection', emberArray(['apples', 'bananas', 'oranges']));
 
   this.render(hbs`
     <ul>
@@ -28,7 +29,7 @@ test('it returns the collection if the query is empty', function(assert) {
 });
 
 test('it can have zero results', function(assert) {
-  this.set('collection', emberArray(['apples', 'bananas', 'oranges']));
+  set(this, 'collection', emberArray(['apples', 'bananas', 'oranges']));
 
   this.render(hbs`
     {{#unless (search "kirby" collection)}}
@@ -40,7 +41,7 @@ test('it can have zero results', function(assert) {
 });
 
 test('it renders a searched state', function(assert) {
-  this.set('collection', emberArray(['apples', 'bananas', 'oranges']));
+  set(this, 'collection', emberArray(['apples', 'bananas', 'oranges']));
 
   this.render(hbs`
     <ul>
@@ -55,7 +56,7 @@ test('it renders a searched state', function(assert) {
 });
 
 test('the results can match partial queries', function(assert) {
-  this.set('collection', emberArray(['apples', 'bananas', 'oranges']));
+  set(this, 'collection', emberArray(['apples', 'bananas', 'oranges']));
 
   this.render(hbs`
     <ul>
@@ -70,7 +71,7 @@ test('the results can match partial queries', function(assert) {
 });
 
 test('the results can be forced to match the case of the query', function(assert) {
-  this.set('collection', emberArray(['apples', 'bananas', 'oranges']));
+  set(this, 'collection', emberArray(['apples', 'bananas', 'oranges']));
 
   this.render(hbs`
     {{#unless (search "GES" collection caseSensitive=true)}}
@@ -82,8 +83,8 @@ test('the results can be forced to match the case of the query', function(assert
 });
 
 test('the results change when the query changes', async function(assert) {
-  this.set('collection', emberArray(['apples', 'bananas', 'oranges']));
-  this.set('query', 'apples');
+  set(this, 'collection', emberArray(['apples', 'bananas', 'oranges']));
+  set(this, 'query', 'apples');
 
   this.render(hbs`
     {{input value=query on-key-press=(action (mut query))}}
@@ -105,8 +106,8 @@ test('the results change when the query changes', async function(assert) {
 });
 
 test('the results can be forced to be an exact match of the query', function(assert) {
-  this.set('collection', emberArray(['apples', 'bananas', 'oranges']));
-  this.set('query', 'app');
+  set(this, 'collection', emberArray(['apples', 'bananas', 'oranges']));
+  set(this, 'query', 'app');
 
   this.render(hbs`
     <ul>
@@ -119,7 +120,7 @@ test('the results can be forced to be an exact match of the query', function(ass
   assert.equal(findAll('ul li').length, 0);
 
   run(() => {
-    this.set('query', 'apples');
+    set(this, 'query', 'apples');
   });
 
   assert.equal(findAll('ul li').length, 1);
@@ -127,7 +128,7 @@ test('the results can be forced to be an exact match of the query', function(ass
 });
 
 test('properties can be an array of synchronous props', async function(assert) {
-  this.set('collection', emberArray([
+  set(this, 'collection', emberArray([
     {
       name: "apples",
       opinion: "okay"
@@ -141,9 +142,9 @@ test('properties can be an array of synchronous props', async function(assert) {
       opinion: "awesome"
     }
   ]));
-  this.set('properties', emberArray(['name', 'opinion']));
+  set(this, 'properties', emberArray(['name', 'opinion']));
 
-  this.set('query', 'apples');
+  set(this, 'query', 'apples');
 
   this.render(hbs`
     {{input value=query on-key-press=(action (mut query))}}
@@ -165,7 +166,7 @@ test('properties can be an array of synchronous props', async function(assert) {
 });
 
 test('it updates the results if the collection is updated', function(assert) {
-  this.set('collection', emberArray(['apples', 'bananas', 'oranges']));
+  set(this, 'collection', emberArray(['apples', 'bananas', 'oranges']));
 
   this.render(hbs`
     <ul>
@@ -183,7 +184,7 @@ test('it updates the results if the collection is updated', function(assert) {
   assert.equal(results[2].textContent.trim(), 'oranges');
 
   run(() => {
-    this.get('collection').pushObject('mangoes');
+    get(this, 'collection').pushObject('mangoes');
   });
 
   assert.equal(findAll('ul li').length, 4);
