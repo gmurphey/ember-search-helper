@@ -1,6 +1,6 @@
 # ember-search-helper
 
-[![Build Status](https://travis-ci.org/gmurphey/ember-search-helper.svg?branch=master)](https://travis-ci.org/gmurphey/ember-search-helper)
+[![Build Status](https://travis-ci.org/gmurphey/ember-search-helper.svg?branch=master)](https://travis-ci.org/gmurphey/ember-search-helper) [![Greenkeeper badge](https://badges.greenkeeper.io/gmurphey/ember-search-helper.svg)](https://greenkeeper.io/)
 
 This README outlines the details of collaborating on this Ember addon.
 
