@@ -1,7 +1,7 @@
 {
   "name": "ember-search-helper",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Provides a helper to filter an array by a search string.",
   "keywords": [
     "ember-addon",
     "search",
@@ -14,7 +14,7 @@
   "directories": {
     "test": "tests"
   },
-  "repository": "",
+  "repository": "https://github.com/gmurphey/ember-search-helper",
   "scripts": {
     "build": "ember build",
     "start": "ember server",
