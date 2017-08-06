@@ -7,6 +7,13 @@ module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
     'ember-cli-babel': {
       includePolyfill: true
+    },
+
+    'ember-bootstrap': {
+      'bootstrapVersion': 3,
+      'importBootstrapFont': false,
+      'importBootstrapCSS': false,
+      'whitelist': []
     }
   });
 

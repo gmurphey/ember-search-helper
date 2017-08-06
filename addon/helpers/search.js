@@ -1,4 +1,4 @@
-import Helper from '@ember/component/helper';
+import { helper } from '@ember/component/helper';
 import { get } from '@ember/object';
 import { isEmpty } from '@ember/utils';
 import { A as emberArray } from '@ember/array';
@@ -48,4 +48,4 @@ export function search([ query, collection ], { properties=[], caseSensitive=fal
   return foundItems;
 }
 
-export default Helper.helper(search);
+export default helper(search);
