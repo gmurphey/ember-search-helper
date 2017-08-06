@@ -21,7 +21,7 @@
     "test": "ember try:each",
     "preversion": "rm -rf node_modules; npm install; npm test",
     "postversion": "npm publish",
-    "postpublish": "git push origin $(git branch | grep '*' | sed 's/* //'); git push origin --tags"
+    "postpublish": "git push origin $(git branch | grep '*' | sed 's/* //'); git push origin --tags; ember deploy production"
   },
   "dependencies": {
     "ember-cli-babel": "^6.3.0"
@@ -61,6 +61,7 @@
     "node": "^4.5 || 6.* || >= 7.*"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "demoURL": "http://www.gmurphey.com/ember-search-helper/"
   }
 }
