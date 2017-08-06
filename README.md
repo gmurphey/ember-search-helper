@@ -8,7 +8,7 @@ Provides a helper to filter an array by a partial search string.
 
 The `search` helper can filter simple arrays:
 
-``` javascript
+```javascript
 // controller.js
 
 export default Ember.Controller.extend({
@@ -17,7 +17,7 @@ export default Ember.Controller.extend({
 });
 ```
 
-``` hbs
+```hbs
 {{input value=query on-key-press=(action (mut query))}}
 
 <ul>
@@ -52,7 +52,7 @@ export default Ember.Controller.extend({
 });
 ```
 
-``` hbs
+```hbs
 {{input value=query on-key-press=(action (mut query))}}
 
 <ul>

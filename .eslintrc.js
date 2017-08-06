@@ -12,5 +12,6 @@ module.exports = {
     browser: true
   },
   rules: {
+    'ember/alias-model-in-controller': 0
   }
 };
