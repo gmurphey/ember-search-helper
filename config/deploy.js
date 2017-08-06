@@ -2,7 +2,7 @@
 
 module.exports = function(deployTarget) {
   var ENV = {
-    build: {}
+    build: {},
     // include other plugin configuration that applies to all deploy targets here
     git: {
       repo: 'git@github.com:gmurphey/ember-search-helper.git',
