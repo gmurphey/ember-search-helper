@@ -13,7 +13,7 @@ module.exports = function(defaults) {
       'bootstrapVersion': 3,
       'importBootstrapFont': false,
       'importBootstrapCSS': false,
-      'whitelist': []
+      'whitelist': ['bs-form']
     }
   });
 

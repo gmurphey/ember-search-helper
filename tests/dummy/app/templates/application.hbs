@@ -1,11 +1,8 @@
 <div class="col-md-4 col-md-offset-4">
   <h1>ember-search-helper</h1>
 
-  <form>
-    <div class="form-group">
-      <label for="query">Query</label>
-      {{one-way-input query update=(action (mut query)) class="form-control"}}
-    </div>
+  {{#bs-form as |form|}}
+    {{form.element value=query label="Query" onChange=(action (mut query))}}
 
     <div class="form-group">
       <label for="searchable-properties">Search by</label>
@@ -18,14 +15,9 @@
       {{/power-select-multiple}}
     </div>
 
-    <label for="case-sensitive" class="checkbox-inline">
-      {{one-way-checkbox caseSensitive update=(action (mut caseSensitive)) id="case-sensitive"}} Case Sensitive
-    </label>
-
-    <label for="exact-match" class="checkbox-inline">
-      {{one-way-checkbox exactMatch update=(action (mut exactMatch)) id="exact-match"}} Exact Match
-    </label>
-  </form>
+    {{form.element value=caseSesitive controlType="checkbox" label="Case Sensitive" onChange=(action (mut caseSensitive))}}
+    {{form.element value=exactMatch controlType="checkbox" label="Exact Match" onChange=(action (mut exactMatch))}}
+  {{/bs-form}}
 
   <hr>
 
