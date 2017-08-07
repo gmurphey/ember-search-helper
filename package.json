@@ -61,6 +61,6 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "http://www.gmurphey.com/ember-search-helper/"
+    "demoURL": "https://gmurphey.github.io/ember-search-helper/"
   }
 }
