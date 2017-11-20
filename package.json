@@ -52,7 +52,7 @@
     "ember-power-select": "^1.9.2",
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.16.0",
-    "eslint-plugin-ember": "^4.2.0",
+    "eslint-plugin-ember": "^5.0.0",
     "faker": "^4.1.0",
     "loader.js": "^4.2.3"
   },
