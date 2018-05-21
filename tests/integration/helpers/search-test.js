@@ -1,12 +1,12 @@
+import { findAll, find, fillIn } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from 'ember-test-helpers';
-import hbs from 'htmlbars-inline-precompile';
 
+import hbs from 'htmlbars-inline-precompile';
 import { get, set } from '@ember/object';
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
-import { findAll, find, fillIn } from 'ember-native-dom-helpers';
 
 module('search', function(hooks) {
   setupRenderingTest(hooks);
