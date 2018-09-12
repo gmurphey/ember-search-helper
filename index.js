@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-search-helper'
+  name: require('./package').name
 };

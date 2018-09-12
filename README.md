@@ -73,11 +73,18 @@ export default Ember.Controller.extend({
 - `exactMatch` (`Boolean`, default: `true`)
   When set to true, the `search` helper will only return results where the query matches the string exactly.
 
+
 ## Installation
 
 * `git clone <repository-url>` this repository
 * `cd ember-search-helper`
 * `npm install`
+
+## Linting
+
+* `npm run lint:hbs`
+* `npm run lint:js`
+* `npm run lint:js -- --fix`
 
 ## Running
 
