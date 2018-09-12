@@ -1,6 +1,6 @@
 {
   "name": "ember-search-helper",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Provides a helper to filter an array by a search string.",
   "keywords": [
     "ember-addon",
@@ -28,6 +28,7 @@
     "ember-cli-babel": "^6.16.0"
   },
   "devDependencies": {
+    "@ember/jquery": "^0.5.1",
     "@ember/optional-features": "^0.6.3",
     "bootstrap-sass": "^3.3.7",
     "broccoli-asset-rev": "^2.7.0",
@@ -35,9 +36,9 @@
     "ember-browserify": "^1.2.0",
     "ember-cli": "~3.4.2",
     "ember-cli-dependency-checker": "^3.0.0",
-    "ember-cli-deploy": "^1.0.1",
-    "ember-cli-deploy-build": "^1.1.0",
-    "ember-cli-deploy-git": "^1.3.0",
+    "ember-cli-deploy": "^1.0.2",
+    "ember-cli-deploy-build": "^1.1.1",
+    "ember-cli-deploy-git": "^1.3.3",
     "ember-cli-eslint": "^4.2.3",
     "ember-cli-htmlbars": "^3.0.0",
     "ember-cli-htmlbars-inline-precompile": "^1.0.3",
@@ -59,8 +60,7 @@
     "eslint-plugin-node": "^7.0.1",
     "faker": "^4.1.0",
     "loader.js": "^4.7.0",
-    "qunit-dom": "^0.7.1",
-    "@ember/jquery": "^0.5.1"
+    "qunit-dom": "^0.7.1"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
