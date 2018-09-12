@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { get, set } from '@ember/object';
 import { A as emberArray } from '@ember/array';
-import faker from 'npm:faker';
+import faker from 'faker';
 
 export default Route.extend({
   model() {
