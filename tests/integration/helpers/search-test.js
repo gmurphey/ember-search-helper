@@ -1,4 +1,4 @@
-import { findAll, find, fillIn } from '@ember/test-helpers';
+import { findAll, fillIn } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from 'ember-test-helpers';
@@ -25,9 +25,9 @@ module('search', function(hooks) {
     let results = findAll('ul li');
 
     assert.equal(results.length, 3);
-    assert.equal(results[0].textContent.trim(), 'apples');
-    assert.equal(results[1].textContent.trim(), 'bananas');
-    assert.equal(results[2].textContent.trim(), 'oranges');
+    assert.dom(results[0]).hasText('apples');
+    assert.dom(results[1]).hasText('bananas');
+    assert.dom(results[2]).hasText('oranges');
   });
 
   test('it can have zero results', async function(assert) {
@@ -39,7 +39,7 @@ module('search', function(hooks) {
       {{/unless}}
     `);
 
-    assert.equal(find('p').textContent.trim(), 'No results.');
+    assert.dom('p').hasText('No results.');
   });
 
   test('it renders a searched state', async function(assert) {
@@ -53,8 +53,8 @@ module('search', function(hooks) {
       </ul>
     `);
 
-    assert.equal(findAll('ul li').length, 1);
-    assert.equal(find('ul li').textContent.trim(), 'apples');
+    assert.dom('ul li').exists({ count: 1 });
+    assert.dom('ul li').hasText('apples');
   });
 
   test('the results can match partial queries', async function(assert) {
@@ -68,8 +68,8 @@ module('search', function(hooks) {
       </ul>
     `);
 
-    assert.equal(findAll('ul li').length, 1);
-    assert.equal(find('ul li').textContent.trim(), 'oranges');
+    assert.dom('ul li').exists({ count: 1 });
+    assert.dom('ul li').hasText('oranges');
   });
 
   test('the results can be forced to match the case of the query', async function(assert) {
@@ -81,7 +81,7 @@ module('search', function(hooks) {
       {{/unless}}
     `);
 
-    assert.equal(find('p').textContent.trim(), 'No results.');
+    assert.dom('p').hasText('No results.');
   });
 
   test('the results change when the query changes', async function(assert) {
@@ -98,13 +98,13 @@ module('search', function(hooks) {
       </ul>
     `);
 
-    assert.equal(findAll('ul li').length, 1);
-    assert.equal(find('ul li').textContent.trim(), 'apples');
+    assert.dom('ul li').exists({ count: 1 });
+    assert.dom('ul li').hasText('apples');
 
     await fillIn('input', 'bananas');
 
-    assert.equal(findAll('ul li').length, 1);
-    assert.equal(find('ul li').textContent.trim(), 'bananas');
+    assert.dom('ul li').exists({ count: 1 });
+    assert.dom('ul li').hasText('bananas');
   });
 
   test('the results can be forced to be an exact match of the query', async function(assert) {
@@ -119,14 +119,14 @@ module('search', function(hooks) {
       </ul>
     `);
 
-    assert.equal(findAll('ul li').length, 0);
+    assert.dom('ul li').doesNotExist();
 
     run(() => {
       set(this, 'query', 'apples');
     });
 
-    assert.equal(findAll('ul li').length, 1);
-    assert.equal(find('ul li').textContent.trim(), 'apples');
+    assert.dom('ul li').exists({ count: 1 });
+    assert.dom('ul li').hasText('apples');
   });
 
   test('properties can be an array of synchronous props', async function(assert) {
@@ -158,13 +158,13 @@ module('search', function(hooks) {
       </ul>
     `);
 
-    assert.equal(findAll('ul li').length, 1);
-    assert.equal(find('ul li').textContent.trim(), 'apples (okay)');
+    assert.dom('ul li').exists({ count: 1 });
+    assert.dom('ul li').hasText('apples (okay)');
 
     await fillIn('input', 'awesome');
 
-    assert.equal(findAll('ul li').length, 1);
-    assert.equal(find('ul li').textContent.trim(), 'oranges (awesome)');
+    assert.dom('ul li').exists({ count: 1 });
+    assert.dom('ul li').hasText('oranges (awesome)');
   });
 
   test('it updates the results if the collection is updated', async function(assert) {
@@ -181,14 +181,14 @@ module('search', function(hooks) {
     let results = findAll('ul li');
 
     assert.equal(results.length, 3);
-    assert.equal(results[0].textContent.trim(), 'apples');
-    assert.equal(results[1].textContent.trim(), 'bananas');
-    assert.equal(results[2].textContent.trim(), 'oranges');
+    assert.dom(results[0]).hasText('apples');
+    assert.dom(results[1]).hasText('bananas');
+    assert.dom(results[2]).hasText('oranges');
 
     run(() => {
       get(this, 'collection').pushObject('mangoes');
     });
 
-    assert.equal(findAll('ul li').length, 4);
+    assert.dom('ul li').exists({ count: 4 });
   });
 });
