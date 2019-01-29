@@ -4,6 +4,11 @@
 
 Provides a helper to filter an array by a partial search string.
 
+## Compatibility
+
+* Ember.js v2.18 or above
+* Ember CLI v2.13 or above
+
 ## Examples
 
 The `search` helper can filter simple arrays:
@@ -72,33 +77,5 @@ export default Ember.Controller.extend({
 
 - `exactMatch` (`Boolean`, default: `true`)
   When set to true, the `search` helper will only return results where the query matches the string exactly.
-
-
-## Installation
-
-* `git clone <repository-url>` this repository
-* `cd ember-search-helper`
-* `npm install`
-
-## Linting
-
-* `npm run lint:hbs`
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
-
-## Running
-
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-
-## Running Tests
-
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
 
 For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
