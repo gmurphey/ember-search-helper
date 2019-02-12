@@ -25,7 +25,7 @@
     "postpublish": "git push origin $(git branch | grep '*' | sed 's/* //'); git push origin --tags; ember deploy production"
   },
   "dependencies": {
-    "ember-cli-babel": "^7.1.2"
+    "ember-cli-babel": "^7.4.2"
   },
   "devDependencies": {
     "@ember/optional-features": "^0.6.3",
