@@ -1,21 +1,16 @@
 import Route from '@ember/routing/route';
 import { get, set } from '@ember/object';
 import { A as emberArray } from '@ember/array';
-import faker from 'faker';
 
 export default Route.extend({
   model() {
-    let results = emberArray();
-
-    for (let i = 0; i < 10; i++) {
-      results.pushObject({
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
-        job: faker.name.jobType()
-      });
-    }
-
-    return results;
+    return emberArray([
+      { firstName: 'Sandra', lastName: 'Dedo', position: 'Product Manager' },
+      { firstName: 'Kelvin', lastName: 'Durgan', position: 'Project Manager' },
+      { firstName: 'Garrett', lastName: 'Murphey', position: 'Software Developer' },
+      { firstName: 'Marielle', lastName: 'Moore', position: 'Software Developer' },
+      { firstName: 'Shyanne', lastName: 'Daugherty', position: 'Engineering Manager' }
+    ]);
   },
 
   setupController(controller) {
