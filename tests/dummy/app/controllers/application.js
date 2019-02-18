@@ -16,8 +16,8 @@ export default Controller.extend({
       displayName: 'Last Name'
     },
     {
-      value: 'job',
-      displayName: 'Job'
+      value: 'position',
+      displayName: 'Position'
     }
   ])
 });
