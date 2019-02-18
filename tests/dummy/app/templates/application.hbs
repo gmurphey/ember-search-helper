@@ -3,6 +3,7 @@
 
   {{#bs-form as |form|}}
     {{form.element
+      id="query"
       value=query
       label="Query"
       onChange=(action (mut query))
@@ -21,12 +22,14 @@
     </div>
 
     {{form.element
+      id="case-sensitive"
       value=caseSesitive
       controlType="checkbox"
       label="Case Sensitive"
       onChange=(action (mut caseSensitive))
     }}
     {{form.element
+      id="exact-match"
       value=exactMatch
       controlType="checkbox"
       label="Exact Match"
@@ -36,31 +39,33 @@
 
   <hr>
 
-  {{#with
-    (search query model properties=properties caseSensitive=caseSensitive exactMatch=exactMatch)
-    as |results|
-  }}
-    <table class="table table-condensed">
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Job</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each results as |result|}}
+  <div id="results">
+    {{#with
+      (search query model properties=properties caseSensitive=caseSensitive exactMatch=exactMatch)
+      as |results|
+    }}
+      <table class="table table-condensed">
+        <thead>
           <tr>
-            <td>{{result.firstName}}</td>
-            <td>{{result.lastName}}</td>
-            <td>{{result.job}}</td>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Position</th>
           </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  {{else}}
-    <p>No results.</p>
-  {{/with}}
+        </thead>
+        <tbody>
+          {{#each results as |result|}}
+            <tr data-test-row-id="{{result.firstName}}-{{result.lastName}}">
+              <td>{{result.firstName}}</td>
+              <td>{{result.lastName}}</td>
+              <td>{{result.position}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{else}}
+      <p>No results.</p>
+    {{/with}}
+  </div>
 
   <p class="text-center">
     <a href="https://github.com/gmurphey/ember-search-helper">
