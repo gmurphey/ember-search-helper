@@ -3077,15 +3077,7 @@ electron-to-chromium@^1.3.47:
   version "1.3.47"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.47.tgz#764e887ca9104d01a0ac8eabee7dfc0e2ce14104"
 
-ember-assign-polyfill@^2.0.1:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/ember-assign-polyfill/-/ember-assign-polyfill-2.4.0.tgz#acb00466f7d674b3e6b030acfe255b3b1f6472e1"
-  integrity sha512-0SnGQb9CenRqbZdIa1KFsEjT+1ijGWfAbCSaDbg5uVa5l6HPdppuTzOXK6sfEQMsd2nbrp27QWFy7W5VX6l4Ag==
-  dependencies:
-    ember-cli-babel "^6.6.0"
-    ember-cli-version-checker "^2.0.0"
-
-ember-assign-polyfill@^2.6.0:
+ember-assign-polyfill@^2.0.1, ember-assign-polyfill@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/ember-assign-polyfill/-/ember-assign-polyfill-2.6.0.tgz#07847e3357ee35b33f886a0b5fbec6873f6860eb"
   integrity sha512-Y8NzOmHI/g4PuJ+xC14eTYiQbigNYddyHB8FY2kuQMxThTEIDE7SJtgttJrYYcPciOu0Tnb5ff36iO46LeiXkw==
@@ -3103,9 +3095,9 @@ ember-basic-dropdown@^1.1.0:
     ember-maybe-in-element "^0.2.0"
 
 ember-bootstrap@^2.1.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/ember-bootstrap/-/ember-bootstrap-2.5.0.tgz#afd9e1a6814a195c644ccd691c413c9d45dba928"
-  integrity sha512-ahCycWUBknaIt9UzsZz94UvVxwzuKdc1JdhhIuYyGQToRlmzbzSqxWDWiwC2ETrA9FLJBIeaznr9Tvy6Sid+xQ==
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/ember-bootstrap/-/ember-bootstrap-2.6.0.tgz#ab9f3133abcd8f901cc5a750e9491217d394d485"
+  integrity sha512-mY12ox05Z5eoNdK2MjAyI+wX4W9umUkZlted07h9DZw0WqBeeojC7RWg+yhn5R4hCTzJfUKDhWma/5x7tfr/vw==
   dependencies:
     broccoli-debug "^0.6.3"
     broccoli-funnel "^2.0.0"
