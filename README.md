@@ -78,4 +78,13 @@ export default Ember.Controller.extend({
 - `exactMatch` (`Boolean`, default: `true`)
   When set to true, the `search` helper will only return results where the query matches the string exactly.
 
+Contributing
+------------------------------------------------------------------------------
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
+
+
+License
+------------------------------------------------------------------------------
+
 For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
