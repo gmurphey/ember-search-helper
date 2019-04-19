@@ -1,6 +1,6 @@
 {
   "name": "ember-search-helper",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Provides a helper to filter an array by a search string.",
   "keywords": [
     "ember-addon",
