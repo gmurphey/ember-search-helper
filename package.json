@@ -22,7 +22,8 @@
     "start": "ember serve",
     "test": "ember test",
     "test:all": "ember try:each",
-    "postpublish": "git push origin $(git branch | grep '*' | sed 's/* //'); git push origin --tags; ember deploy production"
+    "postpublish": "git push origin $(git branch | grep '*' | sed 's/* //'); git push origin --tags; ember deploy production",
+    "changelog": "lerna-changelog"
   },
   "dependencies": {
     "ember-cli-babel": "^7.1.2"
@@ -56,6 +57,7 @@
     "ember-try": "^1.0.0",
     "eslint-plugin-ember": "^6.0.0",
     "eslint-plugin-node": "^9.0.0",
+    "lerna-changelog": "^0.8.2",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.8.4",
     "sass": "^1.17.0"
@@ -66,5 +68,14 @@
   "ember-addon": {
     "configPath": "tests/dummy/config",
     "demoURL": "https://gmurphey.github.io/ember-search-helper/"
+  },
+  "changelog": {
+    "labels": {
+      "breaking": ":boom: Breaking Change",
+      "enhancement": ":rocket: Enhancement",
+      "bug": ":bug: Bug Fix",
+      "documentation": ":memo: Documentation",
+      "internal": ":house: Internal"
+    }
   }
 }
