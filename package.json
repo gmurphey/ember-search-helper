@@ -26,7 +26,7 @@
     "changelog": "lerna-changelog"
   },
   "dependencies": {
-    "ember-cli-babel": "^7.12.0"
+    "ember-cli-babel": "^7.13.0"
   },
   "devDependencies": {
     "@ember/optional-features": "^1.1.0",
